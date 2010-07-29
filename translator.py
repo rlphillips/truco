@@ -32,25 +32,28 @@ class Translator:
         message = message.strip()
         message = message.translate(maketrans('αινσϊ','aeiou'))
         return message;
+    
+    def parse_explicit_command(self, message):
+        tokens = message.split(' ,!')
+        command_names = {'a': 'accept', 'b': 'bet', 't': 'play', 'p': 'play', 'q': 'accept', 'd': 'decline'}
+        command_name = command_names[tokens.pop(0)]
+        command_arguments = tokens
+        command_list.push {'name': command_name, 'arguments': command_arguments}
 
     def parse_message(self, message):
         '''Outputs a dictionary, whose keys are the commands included in message, and whose entries are the command arguments.'''
-        command_list = {}
+        command_list = []
 
 	#Explicit commands.
 	if message.find('!') == 0:
-            tokens = message.split(' ,!')
-            command_names = {'a': 'accept', 'b': 'bet', 't': 'play', 'p': 'play', 'q': 'accept', 'd': 'decline'}
-            command_name = command_names[tokens.pop(0)]
-            command_arguments = tokens
-            command_list[command_name] = command_arguments
+
             
 	#Natural commands.
 	if message.find('*') == 0:
             tokens = message.split('*')
             command_names = {'mira su mano': 'show hand', 'muestra su mano': 'display hand', 'se va al mazo': 'forfeit'}
             command_name = actions[tokens.first()]
-            command_list[command_name] = []
+            command_list.push
 
         #Bets.
         bet_names = ['quiero retruco', 'quiero vale cuatro', 'no quiero', 'quiero', 'contraflor al resto', \
