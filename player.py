@@ -13,3 +13,7 @@ __version__ = "3"
 __maintainer__ = "Esteban Martinez and Rodney Phillips"
 __email__ = "esteban.a.martinez at gmail dot com, rodneyph at gmail dot com"
 __status__ = "Production"
+
+class Player:
+    def __init__(self):
+        self.cards = []
