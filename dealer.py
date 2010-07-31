@@ -21,21 +21,27 @@ class Dealer:
         self.score_sheet = {}
         suits = ['oro', 'copa', 'basto', 'espada']
         numbers = range(1, 7) + range(10, 12)
-        self.deck = [{'number': number, 'suit': suit} for number in numbers for suit in suits]
+        #self.deck = [{'number': number, 'suit': suit} for number in numbers for suit in suits]
+	
+	#El dealer no debería conocer a los jugadores.
+    #def get_alias(self, player):
+    #    pass
+	#El dealer no va a almacenar el puntaje, va a quedar en team
+    #def get_score(self, team):
+    #    return self.score_sheet[team]
+	#El dealer no va a conocer a los jugadores.
+    #def add_player(self, player):
+    #    pass
 
-    def get_alias(self, player):
-        pass
+    def give_cards(self, hand_size):
+        cards = random.sample(self.deck, hand_size)
+        for card in cards:
+        	self.deck.remove(card)
+	return cards
 
-    def get_score(self, team):
-        return self.score_sheet[team]
+    def shuffle(self):
+	self.deck = original_deck
 
-    def add_player(self, player):
-        pass
-
-    def deal_hands(self, hand_size):
-        for player in self.player_roster.keys():
-            cards = random.sample(self.deck, hand_size)
-            for card in cards:
-                self.deck.remove(card)
-            player.add_cards(cards)
+    def assign_deck(self,deck):
+	self.original_deck = deck
             
